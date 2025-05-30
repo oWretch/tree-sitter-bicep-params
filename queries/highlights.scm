@@ -1,15 +1,10 @@
 ; Includes
 [
   "import"
-  "provider"
   "with"
   "as"
   "from"
 ] @keyword.import
-
-; Namespaces
-(module_declaration
-  (identifier) @module)
 
 ; Builtins
 (primitive_type) @type.builtin
@@ -21,9 +16,6 @@
 ; Functions
 (call_expression
   function: (identifier) @function.call)
-
-(user_defined_function
-  name: (identifier) @function)
 
 ; Properties
 (object_property
@@ -38,20 +30,6 @@
 
 (property_identifier) @property
 
-; Attributes
-(decorator
-  "@" @attribute)
-
-(decorator
-  (call_expression
-    (identifier) @attribute))
-
-(decorator
-  (call_expression
-    (member_expression
-      object: (identifier) @attribute
-      property: (property_identifier) @attribute)))
-
 ; Types
 (type_declaration
   (identifier) @type)
@@ -62,9 +40,6 @@
   (identifier) @type)
 
 (type
-  (identifier) @type)
-
-(resource_declaration
   (identifier) @type)
 
 (resource_expression
@@ -86,20 +61,8 @@
     (member_expression
       object: (identifier) @variable.parameter)))
 
-(parameter
-  .
-  (identifier) @variable.parameter)
-
 ; Variables
 (variable_declaration
-  (identifier) @variable
-  (_))
-
-(metadata_declaration
-  (identifier) @variable
-  (_))
-
-(output_declaration
   (identifier) @variable
   (_))
 
@@ -129,22 +92,11 @@
 
 ; Keywords
 [
-  "module"
-  "metadata"
-  "output"
   "param"
-  "resource"
-  "existing"
-  "targetScope"
   "type"
   "var"
   "using"
-  "test"
 ] @keyword
-
-"func" @keyword.function
-
-"assert" @keyword.exception
 
 ; Operators
 [

@@ -1,13 +1,8 @@
 [
-  (module_declaration)
-  (metadata_declaration)
-  (output_declaration)
   (parameter_declaration)
-  (resource_declaration)
   (type_declaration)
   (variable_declaration)
   (parenthesized_expression)
-  (decorators)
   (array)
   (object)
   (if_statement)

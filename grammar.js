@@ -87,44 +87,29 @@ module.exports = grammar({
     infrastructure: $ => repeat($.statement),
 
     statement: $ => choice(
-      $.decorators,
       $.declaration,
       $.import_statement,
       $.import_with_statement,
       $.import_functionality,
       $.using_statement,
-      $.target_scope_assignment,
     ),
 
     declaration: $ => choice(
-      $.module_declaration,
-      $.metadata_declaration,
-      $.output_declaration,
       $.parameter_declaration,
-      $.resource_declaration,
       $.type_declaration,
       $.variable_declaration,
-      $.user_defined_function,
-      $.test_block,
-      $.assert_statement,
     ),
 
-    module_declaration: $ => seq(
-      'module',
-      $.identifier,
-      $.string,
-      '=',
-      choice($.if_statement, $.object, $.for_statement),
-    ),
+
 
     import_statement: $ => seq(
-      choice('import', 'provider'),
+      'import',
       $.string,
       optional(seq('as', $.identifier)),
     ),
 
     import_with_statement: $ => seq(
-      choice('import', 'provider'),
+      'import',
       $.string,
       'with',
       $.expression,
@@ -139,41 +124,13 @@ module.exports = grammar({
       ),
       'from',
       $.string,
-    ),
-
-    using_statement: $ => seq('using', $.string),
-
-    target_scope_assignment: $ => seq('targetScope', '=', $.string),
-
-    metadata_declaration: $ => seq(
-      'metadata',
-      $.identifier,
-      '=',
-      $.expression,
-    ),
-
-    output_declaration: $ => seq(
-      'output',
-      $.identifier,
-      $.type,
-      '=',
-      $.expression,
-    ),
+    ),    using_statement: $ => seq('using', $.string),
 
     parameter_declaration: $ => seq(
       'param',
       $.identifier,
       $.type,
       optional(seq('=', $.expression)),
-    ),
-
-    resource_declaration: $ => seq(
-      'resource',
-      $.identifier,
-      $.string,
-      optional('existing'),
-      '=',
-      choice($.if_statement, $.object, $.for_statement),
     ),
 
     type_declaration: $ => seq(
@@ -195,30 +152,6 @@ module.exports = grammar({
       '=',
       $.expression,
       optional('!'),
-    ),
-
-    user_defined_function: $ => seq(
-      'func',
-      field('name', $.identifier),
-      $.parameters,
-      field('returns', $.type),
-      '=>',
-      $.expression,
-    ),
-
-    test_block: $ => seq(
-      'test',
-      $.identifier,
-      $.string,
-      '=',
-      $.object,
-    ),
-
-    assert_statement: $ => seq(
-      'assert',
-      field('name', $.identifier),
-      '=',
-      $.expression,
     ),
 
     parameters: $ => seq('(', commaSep($.parameter), ')'),
@@ -260,27 +193,17 @@ module.exports = grammar({
     arguments: $ => seq('(', commaSep($.expression), ')'),
     parenthesized_expression: $ => seq('(', commaSep($.expression), ')'),
 
-    decorator: $ => prec(1, seq('@', $.call_expression)),
-    decorators: $ => prec.right(repeat1($.decorator)),
-
     array: $ => seq(
       '[',
-      optionalCommaSep(seq(
-        optional($.decorators),
-        $.expression,
-      )),
+      optionalCommaSep($.expression),
       ']',
     ),
     object: $ => seq(
       '{',
-      optionalCommaSep(seq(
-        optional($.decorators),
-        $.object_property,
-      )),
+      optionalCommaSep($.object_property),
       '}',
     ),
-    object_property: $ => choice(
-      seq(
+    object_property: $ => seq(
         choice(
           $.identifier,
           $.keyword_identifier,
@@ -298,8 +221,6 @@ module.exports = grammar({
           $.union_type,
         ),
       ),
-      $.resource_declaration,
-    ),
 
     if_statement: $ => seq('if', $.parenthesized_expression, $.object),
 
@@ -455,14 +376,8 @@ module.exports = grammar({
     identifier: _ => token(/[a-zA-Z_*][a-zA-Z0-9_]*/), // TODO: support unicode, namespaces
     keyword_identifier: $ => prec(-3, alias(
       choice(
-        'module',
         'import',
-        'provider',
-        'metadata',
-        'output',
         'param',
-        'resource',
-        'existing',
         'type',
         'var',
         ...primitive_types,
