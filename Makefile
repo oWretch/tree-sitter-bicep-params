@@ -3,7 +3,7 @@ $(error Windows is not supported)
 endif
 
 LANGUAGE_NAME := tree-sitter-bicep
-HOMEPAGE_URL := https://github.com/tree-sitter-grammars/tree-sitter-bicep
+HOMEPAGE_URL := https://github.com/oWretch/tree-sitter-bicep-params
 VERSION := 1.1.0
 
 # repository

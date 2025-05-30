@@ -1,4 +1,4 @@
-"""Bicep grammar for tree-sitter"""
+"""Bicep params grammar for tree-sitter"""
 
 from importlib.resources import files as _files
 

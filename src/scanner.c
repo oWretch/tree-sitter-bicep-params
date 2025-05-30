@@ -16,24 +16,24 @@ static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
 
 static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
-void *tree_sitter_bicep_external_scanner_create() { return ts_calloc(1, sizeof(Scanner)); }
+void *tree_sitter_bicep_params_external_scanner_create() { return ts_calloc(1, sizeof(Scanner)); }
 
-void tree_sitter_bicep_external_scanner_destroy(void *payload) { ts_free(payload); }
+void tree_sitter_bicep_params_external_scanner_destroy(void *payload) { ts_free(payload); }
 
-unsigned tree_sitter_bicep_external_scanner_serialize(void *payload, char *buffer) {
+unsigned tree_sitter_bicep_params_external_scanner_serialize(void *payload, char *buffer) {
     Scanner *scanner = (Scanner *)payload;
     buffer[0] = (char)scanner->quote_before_end_count;
     return 1;
 }
 
-void tree_sitter_bicep_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
+void tree_sitter_bicep_params_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
     if (length == 1) {
         Scanner *scanner = (Scanner *)payload;
         scanner->quote_before_end_count = buffer[0];
     }
 }
 
-bool tree_sitter_bicep_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+bool tree_sitter_bicep_params_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     Scanner *scanner = (Scanner *)payload;
 
     if (valid_symbols[EXTERNAL_ASTERISK]) {

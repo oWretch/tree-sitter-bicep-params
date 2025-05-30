@@ -1,4 +1,4 @@
-module github.com/tree-sitter-grammars/tree-sitter-bicep
+module github.com/oWretch/tree-sitter-bicep-params
 
 go 1.22
 

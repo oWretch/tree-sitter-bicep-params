@@ -1,5 +1,6 @@
 /**
- * @file Bicep grammar for tree-sitter
+ * @file Bicep Parameter Grammar for Tree-Sitter
+ * @author Jerome Brown <Jerome@SoliDeoGloria.tech>
  * @author Amaan Qureshi <amaanq12@gmail.com>
  * @license MIT
  * @see {@link https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview|official syntax spec}
@@ -42,7 +43,7 @@ const primitive_types = [
 
 
 module.exports = grammar({
-  name: 'bicep',
+  name: 'bicep_params',
 
   conflicts: $ => [
     [$.arguments, $.parenthesized_expression],

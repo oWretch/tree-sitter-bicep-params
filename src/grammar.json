@@ -1,6 +1,6 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-  "name": "bicep",
+  "name": "bicep_params",
   "word": "identifier",
   "rules": {
     "infrastructure": {
@@ -3091,5 +3091,6 @@
     "declaration",
     "expression",
     "primary_expression"
-  ]
+  ],
+  "reserved": {}
 }

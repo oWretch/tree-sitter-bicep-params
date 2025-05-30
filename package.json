@@ -1,20 +1,27 @@
 {
-  "name": "tree-sitter-bicep",
+  "name": "tree-sitter-bicep-params",
   "version": "1.1.0",
-  "description": "Bicep grammar for tree-sitter",
-  "repository": "https://github.com/tree-sitter-grammars/tree-sitter-bicep",
+  "description": "Bicep Parameter Grammar for Tree-Sitter",
+  "repository": "https://github.com/oWretch/tree-sitter-bicep-params",
   "license": "MIT",
   "author": {
-    "name": "Amaan Qureshi",
-    "email": "amaanq12@gmail.com"
+    "name": "Jerome Brown",
+    "email": "Jerome@SoliDeoGloria.tech"
   },
+  "contributors": [
+    {
+      "name": "Amaan Qureshi",
+      "email": "amaanq12@gmail.com"
+    }
+  ],
   "main": "bindings/node",
   "types": "bindings/node",
   "keywords": [
     "incremental",
     "parsing",
     "tree-sitter",
-    "bicep"
+    "bicep",
+    "bicep-params"
   ],
   "files": [
     "grammar.js",

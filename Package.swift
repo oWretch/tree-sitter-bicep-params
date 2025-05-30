@@ -2,16 +2,16 @@
 import PackageDescription
 
 let package = Package(
-    name: "TreeSitterBicep",
+    name: "TreeSitterBicepParams",
     products: [
-        .library(name: "TreeSitterBicep", targets: ["TreeSitterBicep"]),
+        .library(name: "TreeSitterBicepParams", targets: ["TreeSitterBicepParams"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/ChimeHQ/SwiftTreeSitter", from: "0.8.0"),
+        .package(url: "https://github.com/oWretch/tree-sitter-bicep-params", from: "0.8.0"),
     ],
     targets: [
         .target(
-            name: "TreeSitterBicep",
+            name: "TreeSitterBicepParams",
             dependencies: [],
             path: ".",
             sources: [
@@ -25,12 +25,12 @@ let package = Package(
             cSettings: [.headerSearchPath("src")]
         ),
         .testTarget(
-            name: "TreeSitterBicepTests",
+            name: "TreeSitterBicepParamsTests",
             dependencies: [
                 "SwiftTreeSitter",
-                "TreeSitterBicep",
+                "TreeSitterBicepParams",
             ],
-            path: "bindings/swift/TreeSitterBicepTests"
+            path: "bindings/swift/TreeSitterBicepParamsTests"
         )
     ],
     cLanguageStandard: .c11
