@@ -374,3 +374,104 @@ var a = [
         (string
           (string_content))
         (boolean)))))
+
+==============================================
+Comprehensive outline test - bicep parameters
+==============================================
+
+param storageAccountName string = 'myStorage'
+param location string = 'eastus'
+param enableEncryption bool = true
+
+var uniqueStorageName = '${storageAccountName}-${uniqueString(resourceGroup().id)}'
+var tags = {
+  Environment: 'Development'
+  Project: 'BicepParamsExample'
+}
+
+type StorageConfig = {
+  name: string
+  location: string
+  encrypted: bool
+}
+
+import { createStorageAccount } from './storage-functions.bicep'
+import * as utils from './utilities.bicep'
+
+using './main.bicep'
+
+---
+
+(infrastructure
+  (parameter_declaration
+    (identifier)
+    (type
+      (primitive_type))
+    (string
+      (string_content)))
+  (parameter_declaration
+    (identifier)
+    (type
+      (primitive_type))
+    (string
+      (string_content)))
+  (parameter_declaration
+    (identifier)
+    (type
+      (primitive_type))
+    (boolean))
+  (variable_declaration
+    (identifier)
+    (string
+      (string_content)
+      (interpolation
+        (identifier))
+      (string_content)
+      (interpolation
+        (call_expression
+          (identifier)
+          (arguments
+            (call_expression
+              (member_expression
+                (call_expression
+                  (identifier)
+                  (arguments))
+                (property_identifier))
+              (arguments)))))))
+  (variable_declaration
+    (identifier)
+    (object
+      (object_property
+        (identifier)
+        (string
+          (string_content)))
+      (object_property
+        (identifier)
+        (string
+          (string_content)))))
+  (type_declaration
+    (identifier)
+    (object
+      (object_property
+        (identifier)
+        (type
+          (primitive_type)))
+      (object_property
+        (identifier)
+        (type
+          (primitive_type)))
+      (object_property
+        (identifier)
+        (type
+          (primitive_type)))))
+  (import_functionality
+    (identifier)
+    (string
+      (string_content)))
+  (import_functionality
+    (identifier)
+    (string
+      (string_content)))
+  (using_statement
+    (string
+      (string_content))))
