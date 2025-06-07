@@ -18,4 +18,6 @@ class TestLanguage(TestCase):
         self.assertIn("variable_declaration", outline_query)
         self.assertIn("type_declaration", outline_query)
         self.assertIn("@name", outline_query)
-        self.assertIn('"kind"', outline_query)
+        self.assertIn("@context", outline_query)
+        self.assertIn("@item", outline_query)
+        self.assertIn("@annotation", outline_query)
