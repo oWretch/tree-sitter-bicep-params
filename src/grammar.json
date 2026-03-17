@@ -2670,6 +2670,5 @@
     "declaration",
     "expression",
     "primary_expression"
-  ],
-  "reserved": {}
+  ]
 }
