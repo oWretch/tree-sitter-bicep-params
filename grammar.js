@@ -92,6 +92,7 @@ module.exports = grammar({
       $.import_with_statement,
       $.import_functionality,
       $.using_statement,
+      $.extends_statement,
     ),
 
     declaration: $ => choice(
@@ -124,13 +125,17 @@ module.exports = grammar({
       ),
       'from',
       $.string,
-    ),    using_statement: $ => seq('using', $.string),
+    ),
+
+    using_statement: $ => seq('using', choice($.string, 'none')),
+
+    extends_statement: $ => seq('extends', $.string),
 
     parameter_declaration: $ => seq(
       'param',
       $.identifier,
-      $.type,
-      optional(seq('=', $.expression)),
+      '=',
+      $.expression,
     ),
 
     type_declaration: $ => seq(
@@ -195,14 +200,16 @@ module.exports = grammar({
 
     array: $ => seq(
       '[',
-      optionalCommaSep($.expression),
+      optionalCommaSep(choice($.spread_expression, $.expression)),
       ']',
     ),
     object: $ => seq(
       '{',
-      optionalCommaSep($.object_property),
+      optionalCommaSep(choice($.spread_expression, $.object_property)),
       '}',
     ),
+    spread_expression: $ => seq('...', $.expression),
+
     object_property: $ => seq(
         choice(
           $.identifier,
@@ -376,7 +383,9 @@ module.exports = grammar({
     identifier: _ => token(/[a-zA-Z_*][a-zA-Z0-9_]*/), // TODO: support unicode, namespaces
     keyword_identifier: $ => prec(-3, alias(
       choice(
+        'extends',
         'import',
+        'none',
         'param',
         'type',
         'var',
