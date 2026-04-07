@@ -114,6 +114,10 @@
         "named": true
       },
       {
+        "type": "extends_statement",
+        "named": true
+      },
+      {
         "type": "import_functionality",
         "named": true
       },
@@ -156,6 +160,10 @@
       "types": [
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "spread_expression",
           "named": true
         }
       ]
@@ -369,6 +377,21 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "extends_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -646,6 +669,10 @@
         {
           "type": "object_property",
           "named": true
+        },
+        {
+          "type": "spread_expression",
+          "named": true
         }
       ]
     }
@@ -711,10 +738,6 @@
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "type",
           "named": true
         }
       ]
@@ -798,6 +821,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "spread_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1110,7 +1148,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "string",
@@ -1199,6 +1237,10 @@
     "named": false
   },
   {
+    "type": "...",
+    "named": false
+  },
+  {
     "type": ".?",
     "named": false
   },
@@ -1276,17 +1318,19 @@
   },
   {
     "type": "comment",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "diagnostic_comment",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "escape_sequence",
     "named": true
+  },
+  {
+    "type": "extends",
+    "named": false
   },
   {
     "type": "false",
@@ -1327,6 +1371,10 @@
   {
     "type": "loop_variable",
     "named": true
+  },
+  {
+    "type": "none",
+    "named": false
   },
   {
     "type": "null",
